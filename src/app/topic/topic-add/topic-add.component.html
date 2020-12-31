@@ -1,0 +1,44 @@
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+  <div class="form-group">
+    <label for="name">Topic name</label>
+    <input id="name" 
+           [(ngModel)]="model.name"
+           name="name"
+           type="text" 
+           class="form-control" 
+           aria-describedby="topicNameHelp" 
+           placeholder="Enter topic name"
+           required
+           pattern="[a-zA-Z0-9\.\-_]{1,255}"
+           [class]="isValid('name')">
+    <small id="topicNameHelp" 
+           class="form-text text-muted">
+      Must be ASCII Alphanumeric, '_', '-' or '.' with a max length of 255
+    </small>
+  </div>
+  <div class="form-group">
+    <label for="numerOfPartitions">Number of Partitions</label>
+    <input type="number" 
+           class="form-control" 
+           id="numberOfPartitions" 
+           placeholder="Enter partition count"
+           [(ngModel)]="model.numberOfPartitions"
+           name="numberOfPartitions" 
+           required
+           [class]="isValid('numberOfPartitions')">
+  </div>
+  <div class="form-group">
+    <label for="replicationFactor">Replication factory</label>
+    <input type="number" 
+           class="form-control" 
+           id="replicationFactor" 
+           name="replicationFactor" 
+           [(ngModel)]="model.replicationFactor"
+           placeholder="Enter replication factor "
+           required
+           [class]="isValid('replicationFactor')">
+  </div>
+  <button type="submit" 
+          class="btn btn-primary"
+          [disabled]="!form.valid">Create new topic</button>
+</form>
