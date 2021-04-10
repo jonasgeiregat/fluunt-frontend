@@ -1,0 +1,11 @@
+.disabled {
+  color: currentColor;
+  cursor: default;
+  opacity: 0.5;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+.active {
+  cursor: pointer;
+}

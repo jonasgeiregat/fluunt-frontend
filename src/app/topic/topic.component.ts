@@ -11,12 +11,11 @@ import { Topic } from './topic';
 @Injectable()
 export class TopicComponent implements OnInit {
 
-  showInternalTopics: boolean = false
+  public showInternalTopics = false;
 
   @Output() topics: Array<Topic>;
 
-  constructor(private topicService: TopicService, private router: Router) { 
-    console.log(this.showInternalTopics)
+  constructor(private topicService: TopicService, private router: Router) {
     topicService.listTopics(this.showInternalTopics)
       .subscribe((topics: Array<Topic>) => this.topics = topics);
   }
@@ -24,12 +23,7 @@ export class TopicComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onTopicClick(name) {
-    this.router.navigate(['/topics/' + name])
-  }
-
-  refreshTopics() {
-    console.log(this.showInternalTopics)
+  refreshTopics(): void {
     this.topicService.listTopics(this.showInternalTopics)
       .subscribe((topics: Array<Topic>) => this.topics = topics);
   }

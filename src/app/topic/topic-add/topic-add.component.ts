@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, ViewChild, Injectable } from '@angular/core';
+import { Component, OnInit, ViewChild, Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TopicService } from '../topic.service';
@@ -10,7 +10,7 @@ import { TopicService } from '../topic.service';
 })
 @Injectable()
 export class TopicAddComponent implements OnInit {
-  @ViewChild("form") ngForm: NgForm;
+  @ViewChild('form') ngForm: NgForm;
 
   public model: TopicFormModel = new TopicFormModel();
 
@@ -22,18 +22,18 @@ export class TopicAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.topicService.addTopic(this.model)
-      .subscribe(r => {
-        this.router.navigate(['topics'])
+      .subscribe(() => {
+        this.router.navigate(['topics']);
       });
   }
 
   isValid(fieldName: string): string {
-    if(this.ngForm && this.ngForm.form.get(fieldName)) {
-      let field = this.ngForm.form.get(fieldName);
+    if (this.ngForm && this.ngForm.form.get(fieldName)) {
+      const field = this.ngForm.form.get(fieldName);
       return !field.valid && field.touched ? 'is-invalid' : field.touched ? 'is-valid' : '';
-    } 
+    }
   }
 
 }
